@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp'
 import ManagePlaces from './pages/Manage/Places'
 import ManagePlacesCreate from './pages/Manage/Create'
 import ManagePlacesEdit from './pages/Manage/Edit'
+import Home from './pages/Home'
 
 const App = () => {
   return (
@@ -14,19 +15,22 @@ const App = () => {
         <nav>
           <ul className="list-group list-group-horizontal">
             <li className="list-group-item">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="list-group-item">
               <Link to="/sign-in">Sign-in</Link>
             </li>
             <li className="list-group-item">
               <Link to="/sign-up">Sign-up</Link>
             </li>
             <li className="list-group-item">
+              <Link to="/manage/places">Places</Link>
+            </li>
+            <li className="list-group-item">
               <Link to="/manage/places/create">Create Place</Link>
             </li>
             <li className="list-group-item">
               <Link to="/manage/places/edit">Edit Place</Link>
-            </li>
-            <li className="list-group-item">
-              <Link to="/manage/places">Places</Link>
             </li>
           </ul>
         </nav>
@@ -46,7 +50,9 @@ const App = () => {
           <Route path="/manage/places">
             <ManagePlaces />
           </Route>
-          <Route path="/"></Route>
+          <Route path="/">
+            <Home />
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>
