@@ -9,15 +9,19 @@ const SignUp = () => {
         <form>
           <div className="form-group">
             <label>Email</label>
-            <input className="form-control" type="text" />
+            <input className="form-control" type="text" name="email" />
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input className="form-control" type="password" />
+            <input className="form-control" type="password" name="password" />
           </div>
           <div className="form-group">
             <label>Password Confirmation</label>
-            <input className="form-control" type="password" />
+            <input
+              className="form-control"
+              type="password"
+              name="password_confirmation"
+            />
           </div>
           <div>
             <button className="btn btn-primary btn-round">Submit</button>
