@@ -1,5 +1,7 @@
 import { SIGN_IN, SIGN_UP } from '../actions/AccountActions'
 
+import { setAccount, setToken, setRefreshToken } from '../helpers/account'
+
 const initialState = {
   account: null,
 }
@@ -16,6 +18,10 @@ export default function (state = initialState, action) {
 
       const token = metadata ? metadata.token : null
       const refreshToken = metadata ? metadata.refreshToken : null
+
+      if (account) setAccount(account)
+      if (token) setToken(token)
+      if (refreshToken) setRefreshToken(refreshToken)
 
       return { ...state, account }
 

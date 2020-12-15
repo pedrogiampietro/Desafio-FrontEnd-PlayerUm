@@ -2,20 +2,28 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { signIn } from '../../actions/AccountActions'
+import { getFormData } from '../../helpers/form'
 
-const SignIn = ({ signIn, account }) => {
+const submitHandler = (e) => {
+  e.preventDefault()
+  const data = getFormData(e)
+  console.log(data)
+  signIn(data)
+}
+
+const SignIn = ({ signIn }) => {
   return (
     <div className="container h-100 pt-5">
       <h1>Sign In</h1>
       <div className="d-flex flex-column h-100">
-        <form>
+        <form onSubmit={submitHandler}>
           <div className="form-group">
             <label>Email</label>
-            <input className="form-control" type="text" />
+            <input className="form-control" type="text" name="email" />
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input className="form-control" type="password" />
+            <input className="form-control" type="password" name="password" />
           </div>
           <div>
             <button className="btn btn-primary btn-round">Submit</button>

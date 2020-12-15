@@ -1,12 +1,25 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { signUp } from '../../actions/AccountActions'
+import { getFormData } from '../../helpers/form'
 
-const SignUp = () => {
+const SignUp = ({ signUp, account }) => {
+  if (account) {
+    return <Redirect to="/manage/places" />
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    const data = getFormData(e)
+    signUp(data)
+  }
+
   return (
     <div className="container h-100 pt-5">
       <h1>Sign Up</h1>
       <div className="d-flex flex-column h-100">
-        <form>
+        <form onSubmit={submitHandler}>
           <div className="form-group">
             <label>Email</label>
             <input className="form-control" type="text" name="email" />
@@ -36,4 +49,10 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+const mapStateToProps = (state) => {
+  return {
+    account: state.account.account,
+  }
+}
+
+export default connect(mapStateToProps, { signUp })(SignUp)
