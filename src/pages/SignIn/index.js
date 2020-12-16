@@ -1,17 +1,22 @@
 import React from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { signIn } from '../../actions/AccountActions'
 import { getFormData } from '../../helpers/form'
 
-const submitHandler = (e) => {
-  e.preventDefault()
-  const data = getFormData(e)
-  console.log(data)
-  signIn(data)
-}
+const SignIn = ({ signIn, account }) => {
+  if (account) {
+    return <Redirect to="/manage/links" />
+  }
 
-const SignIn = ({ signIn }) => {
+  const submitHandler = (e) => {
+    e.preventDefault()
+
+    const data = getFormData(e)
+
+    signIn(data)
+  }
+
   return (
     <div className="container h-100 pt-5">
       <h1>Sign In</h1>
@@ -19,11 +24,11 @@ const SignIn = ({ signIn }) => {
         <form onSubmit={submitHandler}>
           <div className="form-group">
             <label>Email</label>
-            <input className="form-control" type="text" name="email" />
+            <input type="text" className="form-control" name="email" />
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input className="form-control" type="password" name="password" />
+            <input type="password" className="form-control" name="password" />
           </div>
           <div>
             <button className="btn btn-primary btn-round">Submit</button>
@@ -31,7 +36,7 @@ const SignIn = ({ signIn }) => {
         </form>
         <div className="container text-center fixed-bottom pb-5">
           <div className="text-muted">Don't have an Account?</div>
-          <Link to="/sign-up">Sign-up</Link>
+          <Link to="/sign-up">Sign Up</Link>
         </div>
       </div>
     </div>

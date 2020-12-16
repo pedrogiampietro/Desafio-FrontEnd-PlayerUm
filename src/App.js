@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 import SignIn from './pages/SignIn'
@@ -8,7 +9,12 @@ import ManagePlacesCreate from './pages/Manage/Create'
 import ManagePlacesEdit from './pages/Manage/Edit'
 import Home from './pages/Home'
 
-const App = () => {
+import { initAccount } from './actions/AccountActions'
+
+const App = ({ initAccount }) => {
+  React.useEffect(() => {
+    initAccount()
+  }, [initAccount])
   return (
     <BrowserRouter>
       <div>
@@ -59,4 +65,8 @@ const App = () => {
   )
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return { account: state.account.account }
+}
+
+export default connect(mapStateToProps, { initAccount })(App)
