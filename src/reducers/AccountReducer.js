@@ -3,6 +3,7 @@ import {
   SIGN_UP,
   SIGN_OUT,
   INIT_ACCOUNT,
+  REFRESH_TOKEN,
 } from '../actions/AccountActions'
 import {
   getAccount,
@@ -48,6 +49,15 @@ export default function foo(state = initialState, action) {
     case INIT_ACCOUNT: {
       const account = getAccount()
       return { ...state, account }
+    }
+
+    case REFRESH_TOKEN: {
+      const response = payload ? payload.data : null
+      const metadata = response ? response.metadata : null
+
+      const token = metadata ? metadata.token : null
+      if (token) setToken(token)
+      return state
     }
 
     default:

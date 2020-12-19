@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken } from './account'
+import { getToken, getRefreshToken } from './account'
 
 export const getApiUrl = (path) => {
   return `http://localhost:3001${path}`
@@ -16,6 +16,18 @@ export const getHeaders = () => {
   return {
     Authorization: `Bearer ${token}`,
   }
+}
+
+export const apiRefreshToken = () => {
+  const url = getApiUrl('/auth/refresh')
+  const refreshToken = getRefreshToken()
+  const options = {
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
+  }
+
+  return axios.post(url, {}, options)
 }
 
 export const apiPost = (path, data = {}) => {
