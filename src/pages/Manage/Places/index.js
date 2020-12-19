@@ -1,9 +1,26 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+import { placeListInAccount } from '../../../actions/PlaceActions'
+import { getImageURL } from '../../../helpers/Api'
 
 import Layout from '../../Layouts/Manage'
 
-const Places = () => {
+const Places = ({ placeListInAccount }) => {
+  const [placesList, setPlacesList] = React.useState([])
+
+  React.useEffect(() => {
+    placeListInAccount()
+      .then(({ payload }) => {
+        const newData = payload.data.data
+        setPlacesList(newData)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }, [placeListInAccount])
+
   return (
     <Layout>
       <div className="row">
@@ -16,18 +33,18 @@ const Places = () => {
           </Link>
         </div>
       </div>
-      {[1, 2, 3, 4].map((places) => (
-        <div className="pb-2 pt-2 p1-3 pr-3 d-flex flex-row justify-content-between">
-          <div className="pr-3">
-            <img src="https://via.placeholder.com/100" alt="Link Icon" />
-          </div>
-          <div className="align-self-center">
-            <span className="text-primary clearfix">Place Title</span>
-            <span className="text-primary clearfix">Place URL</span>
-          </div>
-          <div className="ml-auto p-2 clearfix">
-            <Link to="#">Edit</Link>
-            <button className="btn btn-clear">Delete</button>
+      {placesList.map((places) => (
+        <div key={places.id} className="card mr-3" style={{ width: '20rem' }}>
+          <img
+            className="card-img-top"
+            src={getImageURL(places.image)}
+            alt={places.title}
+          />
+          <div className="card-body">
+            <h4 className="card-title">{places.title}</h4>
+            <p className="card-text">{places.description}</p>
+            <span className="btn btn-primary">Edit</span>
+            <span className="btn btn-secondary">Delete</span>
           </div>
         </div>
       ))}
@@ -35,4 +52,10 @@ const Places = () => {
   )
 }
 
-export default Places
+const mapStateToProps = (state) => {
+  return {
+    place: state.place.place,
+  }
+}
+
+export default connect(mapStateToProps, { placeListInAccount })(Places)

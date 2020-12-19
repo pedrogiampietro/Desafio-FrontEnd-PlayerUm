@@ -21,7 +21,7 @@ const Layout = ({ children, signOut, account }) => {
             <span>Back</span>
           </div>
           <div className="text-center">
-            <strong>Links</strong>
+            <strong>Places</strong>
           </div>
           <div>
             <button className="btn btn-clear" onClick={signOutHandler}>

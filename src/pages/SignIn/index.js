@@ -6,7 +6,7 @@ import { getFormData } from '../../helpers/form'
 
 const SignIn = ({ signIn, account }) => {
   if (account) {
-    return <Redirect to="/manage/links" />
+    return <Redirect to="/manage/places" />
   }
 
   const submitHandler = (e) => {
