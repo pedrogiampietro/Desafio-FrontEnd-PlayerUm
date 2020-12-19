@@ -3,10 +3,18 @@ import { connect } from 'react-redux'
 import { placeList } from '../../actions/PlaceActions'
 import { getImageURL } from '../../helpers/Api'
 
+import LikeDeslikes from '../../components/LikeDeslikes'
+
 import './styles.css'
 
 const Home = ({ placeList }) => {
   const [placesHome, setPlacesHome] = React.useState([])
+
+  const [postInteraction, setPostInteraction] = React.useState(false)
+
+  function interaction() {
+    setPostInteraction(!postInteraction)
+  }
 
   React.useEffect(() => {
     placeList()
@@ -17,7 +25,7 @@ const Home = ({ placeList }) => {
       .catch((err) => {
         console.log(err)
       })
-  }, [placeList])
+  }, [placeList, postInteraction])
 
   return (
     <div>
@@ -26,6 +34,11 @@ const Home = ({ placeList }) => {
         {placesHome.map((places) => (
           <figure key={places.id}>
             <img src={getImageURL(places.image)} alt={places.title} />
+            <LikeDeslikes
+              id={places.id}
+              likes_count={places.likes_count}
+              interaction={interaction}
+            />
           </figure>
         ))}
       </div>

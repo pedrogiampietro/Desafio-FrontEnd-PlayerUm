@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken, getRefreshToken } from './account'
+import { getToken, getRefreshToken, getAccount } from './account'
 
 export const getApiUrl = (path) => {
   return `http://localhost:3001${path}`
@@ -65,4 +65,17 @@ export const apiGet = (path, params = {}) => {
   }
 
   return axios.get(url, options)
+}
+
+export const apiLike = (path, params = {}) => {
+  const url = getApiUrl(path)
+  const token = getToken()
+  const options = {
+    headers: {
+      accountId: getAccount().id,
+      Authorization: `Bearer ${token}`,
+    },
+  }
+
+  return axios.post(url, null, options)
 }
