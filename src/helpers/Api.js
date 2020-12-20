@@ -2,11 +2,11 @@ import axios from 'axios'
 import { getToken, getRefreshToken, getAccount } from './account'
 
 export const getApiUrl = (path) => {
-  return `http://localhost:3001${path}`
+  return `https://rest-api-playerum.herokuapp.com${path}`
 }
 
 export const getImageURL = (path) => {
-  return `http://localhost:3001/${path}`
+  return `https://rest-api-playerum.herokuapp.com/${path}`
 }
 
 export const getHeaders = () => {
