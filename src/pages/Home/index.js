@@ -32,14 +32,14 @@ const Home = ({ placeList }) => {
     <div>
       <h1>Home</h1>
       <div className="container-home">
-        {placesHome.map((places) => (
+        {placesHome.map((places, index) => (
           <div key={places.id}>
             <figure>
               <img src={getImageURL(places.image)} alt={places.title} />
               <span
                 className="moreIcon"
                 data-toggle="modal"
-                data-target="#exampleModalCenter"
+                data-target={`#exampleModal${index}`}
               >
                 <RiAddCircleLine size={45} color="#ffff" />
               </span>
@@ -48,7 +48,7 @@ const Home = ({ placeList }) => {
               {/* Modal */}
               <div
                 className="modal fade"
-                id="exampleModalCenter"
+                id={`exampleModal${index}`}
                 tabIndex={-1}
                 role="dialog"
                 aria-labelledby="exampleModalCenterTitle"
