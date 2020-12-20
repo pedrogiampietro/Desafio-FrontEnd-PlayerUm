@@ -4,6 +4,8 @@ import {
   PLACE_LIST_IN_ACCOUNT,
   PLACE_GET,
   LIKE_UPDATE,
+  PLACE_TO_REMOVE,
+  PLACE_REMOVE,
 } from '../actions/PlaceActions'
 
 const initialState = {
@@ -26,6 +28,17 @@ export default function foo(state = initialState, action) {
       const response = payload ? payload.data : null
       const places = response ? response.data : null
       return { ...state, places }
+    }
+
+    case PLACE_TO_REMOVE: {
+      return { ...state, placeToRemove: payload }
+    }
+
+    case PLACE_REMOVE: {
+      const places = state.places.filter(
+        (place) => place.id !== state.placeToRemove.id
+      )
+      return { ...state, placeToRemove: null, places }
     }
 
     default:

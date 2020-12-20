@@ -1,4 +1,4 @@
-import { apiPost, apiGet, apiLike, apiPut } from '../helpers/Api'
+import { apiPost, apiGet, apiLike, apiPut, apiDelete } from '../helpers/Api'
 
 export const PLACE_CREATE = 'PLACE_CREATE'
 export const PLACE_LIST_IN_ACCOUNT = 'PLACE_LIST_IN_ACCOUNT'
@@ -6,6 +6,8 @@ export const PLACE_LIST = 'PLACE_LIST'
 export const PLACE_GET = 'PLACE_GET'
 export const LIKE_UPDATE = 'LIKE_UPDATE'
 export const PLACE_UPDATE = 'PLACE_UPDATE'
+export const PLACE_TO_REMOVE = 'PLACE_TO_REMOVE'
+export const PLACE_REMOVE = 'PLACE_REMOVE'
 
 export const placeCreate = (data) => {
   const payload = apiPost('/place', data)
@@ -40,4 +42,13 @@ export const upLike = (id) => {
 export const unLike = (id) => {
   const payload = apiLike(`/place/disLike/${id}`)
   return { type: LIKE_UPDATE, payload }
+}
+
+export const setPlaceToRemove = (place) => {
+  return { type: PLACE_TO_REMOVE, payload: place }
+}
+
+export const placeRemove = (place) => {
+  const payload = apiDelete(`/place/${place.id}`)
+  return { type: PLACE_REMOVE, payload }
 }
