@@ -8,6 +8,7 @@ import ManagePlaces from './pages/Manage/Places'
 import ManagePlacesCreate from './pages/Manage/Create'
 import ManagePlacesEdit from './pages/Manage/Edit'
 import Home from './pages/Home'
+import Ranking from './pages/Ranking'
 
 import { initAccount, signOut } from './actions/AccountActions'
 import { FiLogOut } from 'react-icons/fi'
@@ -36,6 +37,11 @@ const App = ({ initAccount, account, signOut }) => {
                 <li className="nav-item active">
                   <Link className="nav-link" to="/">
                     <p>Home</p>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/ranking">
+                    <p>Ranking</p>
                   </Link>
                 </li>
                 {account ? null : (
@@ -105,6 +111,9 @@ const App = ({ initAccount, account, signOut }) => {
           </Route>
           <Route path="/manage/places">
             <ManagePlaces />
+          </Route>
+          <Route path="/ranking">
+            <Ranking />
           </Route>
           <Route path="/">
             <Home />

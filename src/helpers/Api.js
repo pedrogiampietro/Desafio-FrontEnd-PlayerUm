@@ -18,6 +18,15 @@ export const getHeaders = () => {
   }
 }
 
+export const apiGetRankings = async (path, params = {}) => {
+  const url = getApiUrl(path)
+  const options = {
+    params: params,
+  }
+
+  return await axios.get(url, options)
+}
+
 export const apiRefreshToken = () => {
   const url = getApiUrl('/auth/refresh')
   const refreshToken = getRefreshToken()

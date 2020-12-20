@@ -6,6 +6,7 @@ import {
   LIKE_UPDATE,
   PLACE_TO_REMOVE,
   PLACE_REMOVE,
+  RANKING_LIST,
 } from '../actions/PlaceActions'
 
 const initialState = {
@@ -39,6 +40,12 @@ export default function foo(state = initialState, action) {
         (place) => place.id !== state.placeToRemove.id
       )
       return { ...state, placeToRemove: null, places }
+    }
+
+    case RANKING_LIST: {
+      const response = payload ? payload.data : null
+      const places = response ? response.places : null
+      return { ...state, places }
     }
 
     default:

@@ -1,4 +1,11 @@
-import { apiPost, apiGet, apiLike, apiPut, apiDelete } from '../helpers/Api'
+import {
+  apiPost,
+  apiGet,
+  apiLike,
+  apiPut,
+  apiDelete,
+  apiGetRankings,
+} from '../helpers/Api'
 
 export const PLACE_CREATE = 'PLACE_CREATE'
 export const PLACE_LIST_IN_ACCOUNT = 'PLACE_LIST_IN_ACCOUNT'
@@ -8,6 +15,7 @@ export const LIKE_UPDATE = 'LIKE_UPDATE'
 export const PLACE_UPDATE = 'PLACE_UPDATE'
 export const PLACE_TO_REMOVE = 'PLACE_TO_REMOVE'
 export const PLACE_REMOVE = 'PLACE_REMOVE'
+export const RANKING_LIST = 'RANKING_LIST'
 
 export const placeCreate = (data) => {
   const payload = apiPost('/place', data)
@@ -51,4 +59,9 @@ export const setPlaceToRemove = (place) => {
 export const placeRemove = (place) => {
   const payload = apiDelete(`/place/${place.id}`)
   return { type: PLACE_REMOVE, payload }
+}
+
+export const rankingList = (data) => {
+  const payload = apiGetRankings('/place/ranking', data)
+  return { type: RANKING_LIST, payload }
 }
