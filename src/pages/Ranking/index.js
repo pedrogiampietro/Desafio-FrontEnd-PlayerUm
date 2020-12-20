@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { signIn } from '../../actions/AccountActions'
 import { rankingList } from '../../actions/PlaceActions'
 import './styles.css'
 
