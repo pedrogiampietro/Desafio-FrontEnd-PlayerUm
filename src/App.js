@@ -36,7 +36,7 @@ const App = ({ initAccount }) => {
               <Link to="/manage/places/create">Create Place</Link>
             </li>
             <li className="list-group-item">
-              <Link to="/manage/places/edit">Edit Place</Link>
+              <Link to="/manage/places/edit/:id">Edit Place</Link>
             </li>
           </ul>
         </nav>

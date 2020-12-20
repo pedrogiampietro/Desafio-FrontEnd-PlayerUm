@@ -43,7 +43,9 @@ const Places = ({ placeListInAccount }) => {
           <div className="card-body">
             <h4 className="card-title">{places.title}</h4>
             <p className="card-text">{places.description}</p>
-            <span className="btn btn-primary">Edit</span>
+            <Link to={`/manage/places/edit/${places.id}`}>
+              <span className="btn btn-primary">Edit</span>
+            </Link>
             <span className="btn btn-secondary">Delete</span>
           </div>
         </div>

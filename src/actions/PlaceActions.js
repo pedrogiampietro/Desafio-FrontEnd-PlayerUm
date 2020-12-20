@@ -1,14 +1,20 @@
-import { apiPost, apiGet, apiLike } from '../helpers/Api'
+import { apiPost, apiGet, apiLike, apiPut } from '../helpers/Api'
 
 export const PLACE_CREATE = 'PLACE_CREATE'
 export const PLACE_LIST_IN_ACCOUNT = 'PLACE_LIST_IN_ACCOUNT'
 export const PLACE_LIST = 'PLACE_LIST'
 export const PLACE_GET = 'PLACE_GET'
 export const LIKE_UPDATE = 'LIKE_UPDATE'
+export const PLACE_UPDATE = 'PLACE_UPDATE'
 
 export const placeCreate = (data) => {
   const payload = apiPost('/place', data)
   return { type: PLACE_CREATE, payload }
+}
+
+export const placeUpdate = (id, data) => {
+  const payload = apiPut(`/place/${id}`, { ...data })
+  return { type: PLACE_UPDATE, payload }
 }
 
 export const placeListInAccount = (data) => {
