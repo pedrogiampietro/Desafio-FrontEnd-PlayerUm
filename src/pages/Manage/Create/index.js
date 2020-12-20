@@ -105,9 +105,6 @@ const Create = ({ placeCreate }) => {
                       onChange={handleSelectImages}
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary">
-                    Upload
-                  </button>
                   <Link to="/auth/manage">
                     <button type="button" className="btn btn-inverse">
                       Return

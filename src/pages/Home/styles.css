@@ -8,9 +8,33 @@ figure {
   display: flex;
   margin-bottom: 10px;
   break-inside: avoid;
+  position: relative;
 }
 
 .container-home {
   column-count: 5;
   column-gap: 10px;
+}
+
+/* show single place */
+
+figure .moreIcon {
+  display: none;
+}
+figure:hover .moreIcon {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 999;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
