@@ -30,7 +30,7 @@ const LikeDeslikes = ({ upLike, account, id, likes_count, interaction }) => {
           className="d-inline-flex align-items-center text-dark"
         >
           {likes_count?.includes(accountLogged) ? (
-            <span className="width-3 height-2 h1 mt-2">
+            <span className="width-3 height-2 h1 mb-1 mt-2">
               <GiSkullRing
                 className="text-pink"
                 onClick={() => {
@@ -42,7 +42,7 @@ const LikeDeslikes = ({ upLike, account, id, likes_count, interaction }) => {
               </span>
             </span>
           ) : (
-            <span className="width-3 height-2 h1 mt-2">
+            <span className="width-3 height-2 h1">
               <GiSkullRing
                 onClick={() => {
                   likeAPlace()

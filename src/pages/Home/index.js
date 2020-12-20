@@ -33,8 +33,8 @@ const Home = ({ placeList }) => {
       <h1>Home</h1>
       <div className="container-home">
         {placesHome.map((places) => (
-          <>
-            <figure key={places.id}>
+          <div key={places.id}>
+            <figure>
               <img src={getImageURL(places.image)} alt={places.title} />
               <span
                 className="moreIcon"
@@ -44,11 +44,6 @@ const Home = ({ placeList }) => {
                 <RiAddCircleLine size={45} color="#ffff" />
               </span>
             </figure>
-            <LikeDeslikes
-              id={places.id}
-              likes_count={places.likes_count}
-              interaction={interaction}
-            />
             <>
               {/* Modal */}
               <div
@@ -80,28 +75,32 @@ const Home = ({ placeList }) => {
                     <div className="modal-body">
                       <img src={getImageURL(places.image)} alt={places.title} />
 
-                      <h5 class="description mt-3">{places.description}</h5>
+                      <h5 className="description mt-3">{places.description}</h5>
 
-                      <div class="container">
-                        <h3 class="title">{places.title}</h3>
-                        <p class="category">Location</p>
+                      <div className="container">
+                        <h3 className="title">{places.title}</h3>
+                        <p className="category">Location</p>
 
-                        <div class="row">
+                        <div className="row">
                           <div className="col-4">
-                            <div class="social-description">
-                              <h2>{places.likes_count.length}</h2>
+                            <div className="social-description">
+                              <LikeDeslikes
+                                id={places.id}
+                                likes_count={places.likes_count}
+                                interaction={interaction}
+                              />
                               <p>Likes</p>
                             </div>
                           </div>
                           <div className="col-4">
-                            <div class="social-description">
+                            <div className="social-description">
                               <h2>26</h2>
                               <p>Ranking</p>
                             </div>
                           </div>
                           <div className="col-4">
                             {' '}
-                            <div class="social-description">
+                            <div className="social-description">
                               <h2>48</h2>
                               <p>Bookmarks</p>
                             </div>
@@ -122,7 +121,7 @@ const Home = ({ placeList }) => {
                 </div>
               </div>
             </>
-          </>
+          </div>
         ))}
       </div>
     </div>

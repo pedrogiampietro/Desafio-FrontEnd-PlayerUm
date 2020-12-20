@@ -9,37 +9,87 @@ import ManagePlacesCreate from './pages/Manage/Create'
 import ManagePlacesEdit from './pages/Manage/Edit'
 import Home from './pages/Home'
 
-import { initAccount } from './actions/AccountActions'
+import { initAccount, signOut } from './actions/AccountActions'
+import { FiLogOut } from 'react-icons/fi'
 
-const App = ({ initAccount }) => {
+const App = ({ initAccount, account, signOut }) => {
   React.useEffect(() => {
     initAccount()
   }, [initAccount])
+
+  const signOutHandler = (e) => {
+    e.preventDefault()
+    signOut()
+  }
+
   return (
     <BrowserRouter>
       <div>
-        <nav>
-          <ul className="list-group list-group-horizontal">
-            <li className="list-group-item">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="list-group-item">
-              <Link to="/sign-in">Sign-in</Link>
-            </li>
-            <li className="list-group-item">
-              <Link to="/sign-up">Sign-up</Link>
-            </li>
-            <li className="list-group-item">
-              <Link to="/manage/places">Places</Link>
-            </li>
-            <li className="list-group-item">
-              <Link to="/manage/places/create">Create Place</Link>
-            </li>
-            <li className="list-group-item">
-              <Link to="/manage/places/edit/:id">Edit Place</Link>
-            </li>
-          </ul>
+        <nav className="navbar navbar-expand-lg bg-primary">
+          <div className="container">
+            <Link className="navbar-brand" to="/">
+              PlayerUm
+            </Link>
+
+            <div className="collapse navbar-collapse" id="example-navbar">
+              <ul className="navbar-nav">
+                <li className="nav-item active">
+                  <Link className="nav-link" to="/">
+                    <p>Home</p>
+                  </Link>
+                </li>
+                {account ? null : (
+                  <li className="nav-item">
+                    <a className="nav-link" href="/sign-up">
+                      <p>Sign-up</p>
+                    </a>
+                  </li>
+                )}
+                <li className="nav-item">
+                  <a className="nav-link" href="/sign-in">
+                    {account ? 'My Account' : 'Sign-in'}
+                  </a>
+                </li>
+                {account ? (
+                  <li className="nav-item dropdown">
+                    <Link
+                      className="nav-link dropdown-toggle"
+                      to="#"
+                      id="navbarDropdownMenuLink"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <p>Manage</p>
+                    </Link>
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdownMenuLink"
+                    >
+                      <Link className="dropdown-item" to="/manage/places">
+                        Manage
+                      </Link>
+                      <Link
+                        className="dropdown-item"
+                        to="/manage/places/create"
+                      >
+                        Create Places
+                      </Link>
+                    </div>
+                  </li>
+                ) : null}
+                {account ? (
+                  <li className="nav-item ml-4" onClick={signOutHandler}>
+                    <span className="nav-link">
+                      <FiLogOut size={24} color="#ffff" />
+                    </span>
+                  </li>
+                ) : null}
+              </ul>
+            </div>
+          </div>
         </nav>
+
         <Switch>
           <Route path="/sign-in">
             <SignIn />
@@ -69,4 +119,4 @@ const mapStateToProps = (state) => {
   return { account: state.account.account }
 }
 
-export default connect(mapStateToProps, { initAccount })(App)
+export default connect(mapStateToProps, { initAccount, signOut })(App)
