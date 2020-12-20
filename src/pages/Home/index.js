@@ -82,27 +82,14 @@ const Home = ({ placeList }) => {
                         <p className="category">Location</p>
 
                         <div className="row">
-                          <div className="col-4">
+                          <div className="col-12 text-center">
                             <div className="social-description">
                               <LikeDeslikes
                                 id={places.id}
                                 likes_count={places.likes_count}
                                 interaction={interaction}
                               />
-                              <p>Likes</p>
-                            </div>
-                          </div>
-                          <div className="col-4">
-                            <div className="social-description">
-                              <h2>26</h2>
-                              <p>Ranking</p>
-                            </div>
-                          </div>
-                          <div className="col-4">
-                            {' '}
-                            <div className="social-description">
-                              <h2>48</h2>
-                              <p>Bookmarks</p>
+                              <p>Like</p>
                             </div>
                           </div>
                         </div>

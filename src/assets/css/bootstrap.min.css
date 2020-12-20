@@ -4543,7 +4543,7 @@ input[type='submit'].btn-block {
 }
 
 .badge.badge-icon {
-  position: absolute;
+  /* position: absolute; */
   display: inline-block;
   background-color: #fd3995;
   color: #fff;
@@ -9211,6 +9211,10 @@ a.text-dark:hover {
   .navbar {
     display: none;
   }
+
+  /* mobile menu */
+
+
   .badge {
     border: 1px solid #000;
   }

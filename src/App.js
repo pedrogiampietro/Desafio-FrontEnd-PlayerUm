@@ -12,6 +12,7 @@ import Ranking from './pages/Ranking'
 
 import { initAccount, signOut } from './actions/AccountActions'
 import { FiLogOut } from 'react-icons/fi'
+import { AiOutlineMenu } from 'react-icons/ai'
 
 const App = ({ initAccount, account, signOut }) => {
   React.useEffect(() => {
@@ -31,8 +32,19 @@ const App = ({ initAccount, account, signOut }) => {
             <Link className="navbar-brand" to="/">
               PlayerUm
             </Link>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <AiOutlineMenu color="#fff" />
+            </button>
 
-            <div className="collapse navbar-collapse" id="example-navbar">
+            <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item active">
                   <Link className="nav-link" to="/">

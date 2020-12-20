@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { upLike, unLike } from '../../actions/PlaceActions'
 import { getAccount } from '../../helpers/account'
 
-import { GiSkullRing } from 'react-icons/gi'
+import { AiOutlineHeart } from 'react-icons/ai'
 
 const LikeDeslikes = ({ upLike, account, id, likes_count, interaction }) => {
   const [accountLogged, setAccountLogged] = React.useState()
@@ -31,25 +31,25 @@ const LikeDeslikes = ({ upLike, account, id, likes_count, interaction }) => {
         >
           {likes_count?.includes(accountLogged) ? (
             <span className="width-3 height-2 h1 mb-1 mt-2">
-              <GiSkullRing
+              <AiOutlineHeart
                 className="text-pink"
                 onClick={() => {
                   unlikeAPlace()
                 }}
               />
-              <span className="badge badge-icon pos-top pos-right">
+              <span className="badge badge-icon pos-top pos-right mb-5">
                 {likes_count?.length}
               </span>
             </span>
           ) : (
             <span className="width-3 height-2 h1">
-              <GiSkullRing
+              <AiOutlineHeart
                 onClick={() => {
                   likeAPlace()
                 }}
               />
 
-              <span className="badge badge-icon pos-top pos-right">
+              <span className="badge badge-icon pos-top pos-right mb-5">
                 {likes_count?.length}
               </span>
             </span>
@@ -57,8 +57,8 @@ const LikeDeslikes = ({ upLike, account, id, likes_count, interaction }) => {
         </span>
       ) : (
         <span className="width-3 height-2 d-inline-flex align-items-center justify-content-center position-relative h1 ">
-          <GiSkullRing />
-          <span className="badge badge-icon pos-top pos-right">
+          <AiOutlineHeart />
+          <span className="badge badge-icon pos-top pos-right mb-5">
             {likes_count?.length}
           </span>
         </span>

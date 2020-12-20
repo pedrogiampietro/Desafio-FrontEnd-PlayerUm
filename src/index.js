@@ -9,6 +9,7 @@ import './assets/css/bootstrap.min.css'
 import './assets/css/now-ui-kit.min.css'
 import 'bootstrap/js/src/modal'
 import 'bootstrap/js/src/dropdown'
+import 'bootstrap/js/src/collapse'
 
 ReactDOM.render(
   <Provider store={store}>
